@@ -1,0 +1,28 @@
+:root{--bg:#eef2f7;--fg:#14213d;--card:#fff;--mut:#5d6b82;--acc:#0f8b8d;--accfg:#fff;--bd:#d3dbe8}
+@media(prefers-color-scheme:dark){:root{--bg:#0f1624;--fg:#e8edf6;--card:#182136;--mut:#92a0ba;--acc:#4fd1c5;--accfg:#06201e;--bd:#2a3550}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:720px;margin:0 auto;padding:16px}
+h1{font-size:22px;margin:4px 0 2px}
+h2{font-size:16px;margin:0 0 8px}
+.mut{color:var(--mut);font-size:14px}
+.stage{position:relative;background:#0a0f1a;border-radius:12px;overflow:hidden;aspect-ratio:4/3;margin-top:12px}
+video,canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scaleX(-1)}
+#big{position:absolute;left:14px;bottom:18px;font-size:60px;font-weight:700;color:#fff;text-shadow:0 2px 10px #000;line-height:1}
+#bar{position:absolute;left:0;bottom:0;height:6px;width:0;background:var(--acc);transition:width .1s}
+#st{position:absolute;inset:auto 0 50% 0;text-align:center;color:#fff;padding:0 16px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:14px;margin-top:12px}
+#out{font-size:30px;min-height:46px;word-break:break-all;letter-spacing:2px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:8px}
+button,select,input{font:inherit;padding:8px 14px;border-radius:8px;border:1px solid var(--bd);background:var(--card);color:var(--fg);cursor:pointer}
+button.p{background:var(--acc);color:var(--accfg);border-color:var(--acc);font-weight:600}
+button:focus-visible,select:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+#rv{transform:none}
+#cap{position:absolute;left:0;right:0;bottom:0;padding:10px 14px;background:rgba(0,0,0,.7);color:#fff;font-size:24px;letter-spacing:1px;min-height:48px;word-break:break-all}
+input{min-width:0;flex:1 1 140px}
+#sugg button,#wlist button{padding:4px 10px;font-size:14px}
+#sugg:empty{display:none}
+.brand{display:flex;align-items:center;gap:12px}
+.brand h1{margin:0;font-size:26px}
+.brand p{margin:0}
+.brand img{border-radius:10px;flex:none}

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Handly</title>
+<meta name="theme-color" content="#0f8b8d">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="logo.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <header class="brand"><img src="logo.svg" alt="Handly logo" width="44" height="44"><div><h1>Handly</h1><p class="mut">ASL to text, on camera and on video calls</p></div></header>
+  <p class="mut">Show one hand to the camera. Hold a letter or number steady until the bar fills and it is added to your text.</p>
+
+  <div class="stage">
+    <video id="v" playsinline muted></video>
+    <canvas id="c"></canvas>
+    <div id="st">Tap "Start camera" to begin</div>
+    <div id="big">–</div>
+    <div id="bar"></div>
+  </div>
+  <div class="row"><button class="p" id="start">Start camera</button></div>
+
+  <div class="stage" id="rstage" hidden>
+    <video id="rv" playsinline autoplay></video>
+    <div id="cap" aria-live="polite"></div>
+  </div>
+
+  <div class="card">
+    <h2>Video call</h2>
+    <p class="mut">Share your ID with a friend, or enter theirs. While you sign, the text of your signs appears on their screen, and theirs on yours. Start your camera before calling or answering.</p>
+    <div class="row"><span>Your ID: <b id="myid">...</b></span><button id="copyid">Copy</button></div>
+    <div class="row">
+      <input id="rid" placeholder="Friend's ID" autocapitalize="none" autocomplete="off">
+      <button class="p" id="callbtn">Call</button>
+      <button id="hang">End call</button>
+      <button id="sayfriend">Read their text aloud</button>
+    </div>
+    <div class="mut" id="callst"></div>
+  </div>
+
+  <div class="card">
+    <h2>Your text</h2>
+    <div id="out" aria-live="polite"></div>
+    <div class="row" id="sugg"></div>
+    <div class="row">
+      <button id="sp">Space</button>
+      <button id="bs">Backspace</button>
+      <button id="clr">Clear</button>
+      <button id="say">Read aloud</button>
+      <label class="mut">When a sign means both:
+        <select id="mode"><option value="0">use the letter</option><option value="1">use the number</option></select>
+      </label>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Words</h2>
+    <p class="mut">Handly already knows the built-in words below. To add your own, type the word and tap Record word: after a 2-second countdown, sign right away. Record each word 3 to 5 times, changing it slightly each time. Two-handed signs work too. Your own recordings take priority over the built-in ones.</p>
+    <details class="mut"><summary>Built-in words and how to sign them</summary>
+      <ul>
+        <li><b>HELLO</b>: open palm, wave side to side</li>
+        <li><b>STOP</b>: open palm facing the camera, held still</li>
+        <li><b>THANK YOU</b>: flat hand, move down and forward</li>
+        <li><b>PLEASE</b>: flat hand, move in a circle</li>
+        <li><b>SORRY</b>: fist, move in a circle</li>
+        <li><b>YES</b>: fist, nod up and down</li>
+        <li><b>BATHROOM</b>: fist, shake side to side</li>
+        <li><b>GOOD</b>: thumbs up</li>
+        <li><b>NO</b>: index and middle fingers, tap them to your thumb</li>
+        <li><b>I LOVE YOU</b>: thumb, index finger, and pinky up</li>
+        <li><b>WATER</b>: "W" (index, middle, and ring fingers up)</li>
+        <li><b>EAT</b>: fingertips pinched together, move upward</li>
+        <li><b>WAIT</b>: index finger pointing up, held still</li>
+        <li><b>WHERE</b>: index finger, shake side to side</li>
+      </ul>
+    </details>
+    <div class="row"><input id="wname" placeholder="word (e.g. hello)"><button class="p" id="recword">Record word</button></div>
+    <div class="row"><button class="p" id="signword">Sign a word</button>
+      <label class="mut">Tolerance <input type="range" id="thr" min="0.3" max="2" step="0.05" value="0.9"> <span id="thrv">0.9</span></label></div>
+    <div class="mut" id="wmsg"></div>
+    <div class="row" id="wlist"></div>
+  </div>
+
+  <div class="card">
+    <h2>Teach it your hand</h2>
+    <p class="mut">Built-in rules cover about 20 signs. Letters like M, N, T, E, G, H, K, P, Q, R, X and C are too similar for rules, so record them here: pick the sign, hold it in view, tap Record, and slowly turn your hand a little. Samples stay in this browser and take priority over the built-in rules. J and Z need motion and are not supported yet.</p>
+    <div class="row">
+      <select id="lab"></select>
+      <button class="p" id="rec">Record 20 samples</button>
+      <button id="wipe">Delete all samples</button>
+      <span class="mut"><span id="cnt">0</span> saved</span>
+    </div>
+    <div class="mut" id="lmsg"></div>
+  </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands@0.4.1675469240/hands.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/peerjs@1.5.4/dist/peerjs.min.js" crossorigin="anonymous"></script>
+<script src="app.js"></script>
+</body>
+</html>
